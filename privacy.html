@@ -4,31 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MenuPlan — Privacy Policy</title>
+  <link rel="icon" href="icon.png">
   <style>
-    :root { color-scheme: light dark; }
-    * { box-sizing: border-box; }
-    body {
-      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0; padding: 0; color: #1c1c1e; background: #fff;
+    :root {
+      --green-top: #66c76a; --green-mid: #43a047; --green-deep: #2e7d32;
+      --ink: #1c1c1e; --muted: #6e6e73; --card: #f5f5f7; --line: #e5e5ea;
+      color-scheme: light dark;
     }
     @media (prefers-color-scheme: dark) {
-      body { color: #f2f2f7; background: #000; }
-      a { color: #0a84ff; }
+      :root { --ink: #f2f2f7; --muted: #98989f; --card: #1c1c1e; --line: #2c2c2e; }
+      body { background: #000; }
     }
-    a { color: #007aff; }
-    .wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 64px; }
-    h1 { font-size: 30px; margin: 0 0 4px; letter-spacing: -0.02em; }
-    .updated { color: #8e8e93; font-size: 15px; margin: 0 0 32px; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; line-height: 1.6;
+    }
+    a { color: var(--green-mid); }
+    @media (prefers-color-scheme: dark) { a { color: #56c95e; } }
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between; padding: 12px 24px;
+      background: color-mix(in srgb, #fff 72%, transparent);
+      backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+    @media (prefers-color-scheme: dark) { header.nav { background: color-mix(in srgb, #000 72%, transparent); } }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
+    .brand img { width: 30px; height: 30px; border-radius: 7px; }
+    .nav-links { display: flex; gap: 22px; font-size: 15px; font-weight: 500; }
+    .nav-links a { color: var(--muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+
+    .wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 72px; }
+    h1 { font-size: 32px; margin: 0 0 4px; letter-spacing: -0.02em; font-weight: 800; }
+    .updated { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
     h2 { font-size: 21px; margin: 32px 0 10px; letter-spacing: -0.01em; }
-    ul { padding-left: 20px; }
-    li { margin: 6px 0; }
-    .back { display: inline-block; margin-bottom: 24px; }
+    footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+    footer .links { margin-bottom: 12px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    footer .links a { color: var(--muted); text-decoration: none; }
+    footer .links a:hover { color: var(--ink); }
   </style>
 </head>
 <body>
+  <header class="nav">
+    <a class="brand" href="index.html"><img src="icon.png" alt="MenuPlan icon"> MenuPlan</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+
   <div class="wrap">
-    <a class="back" href="index.html">&larr; Back to support</a>
-    <h1>MenuPlan Privacy Policy</h1>
+    <h1>Privacy Policy</h1>
     <p class="updated">Last updated: June 21, 2026</p>
 
     <p>MenuPlan ("the app") is a meal-planning app made by Stephen Brines. This policy
@@ -77,5 +107,15 @@
     <p>Questions about this policy? Email
     <a href="mailto:menuplansupport@gmail.com">menuplansupport@gmail.com</a>.</p>
   </div>
+
+  <footer>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:menuplansupport@gmail.com">Contact</a>
+    </div>
+    <div>MenuPlan &middot; Made by Stephen Brines</div>
+  </footer>
 </body>
 </html>

@@ -3,71 +3,201 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MenuPlan — Support</title>
+  <title>MenuPlan — Plan meals by the month</title>
+  <meta name="description" content="MenuPlan helps you plan meals by the month, build grocery lists automatically, and share with your family — all synced privately through iCloud.">
+  <meta property="og:title" content="MenuPlan">
+  <meta property="og:description" content="Plan meals by the month. Build grocery lists automatically. Share with family.">
+  <meta property="og:image" content="https://sbrines.github.io/MenuPlan-Support/icon.png">
+  <link rel="icon" href="icon.png">
   <style>
-    :root { color-scheme: light dark; }
-    * { box-sizing: border-box; }
-    body {
-      font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0; padding: 0; color: #1c1c1e; background: #fff;
+    :root {
+      --green-top: #66c76a;
+      --green-mid: #43a047;
+      --green-deep: #2e7d32;
+      --ink: #1c1c1e;
+      --muted: #6e6e73;
+      --card: #f5f5f7;
+      --line: #e5e5ea;
+      color-scheme: light dark;
     }
     @media (prefers-color-scheme: dark) {
-      body { color: #f2f2f7; background: #000; }
-      a { color: #0a84ff; }
-      .card { background: #1c1c1e; border-color: #2c2c2e; color: #f2f2f7; }
+      :root { --ink: #f2f2f7; --muted: #98989f; --card: #1c1c1e; --line: #2c2c2e; }
+      body { background: #000; }
     }
-    a { color: #007aff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { max-width: 680px; margin: 0 auto; padding: 48px 24px 64px; }
-    header { text-align: center; margin-bottom: 40px; }
-    h1 { font-size: 34px; margin: 0 0 6px; letter-spacing: -0.02em; }
-    .tagline { color: #8e8e93; font-size: 18px; margin: 0; }
-    h2 { font-size: 22px; margin: 36px 0 12px; letter-spacing: -0.01em; }
-    .card {
-      border: 1px solid #e5e5ea; border-radius: 14px; padding: 20px 22px; margin: 16px 0;
-      background: #fbfbfd; color: #1c1c1e;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
     }
-    ul { padding-left: 20px; }
-    li { margin: 6px 0; }
-    footer { text-align: center; color: #8e8e93; font-size: 14px; margin-top: 48px; }
+    a { color: var(--green-mid); text-decoration: none; }
+    @media (prefers-color-scheme: dark) { a { color: #56c95e; } }
+
+    /* Nav */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 24px;
+      background: color-mix(in srgb, #fff 72%, transparent);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+    @media (prefers-color-scheme: dark) {
+      header.nav { background: color-mix(in srgb, #000 72%, transparent); }
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); }
+    .brand img { width: 30px; height: 30px; border-radius: 7px; }
+    .nav-links { display: flex; gap: 22px; font-size: 15px; font-weight: 500; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 72px 24px 88px;
+      background: linear-gradient(165deg, var(--green-top) 0%, var(--green-deep) 100%);
+      color: #fff;
+    }
+    .hero img.appicon {
+      width: 120px; height: 120px; border-radius: 27px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      margin-bottom: 26px;
+    }
+    .hero h1 { font-size: 52px; margin: 0 0 12px; letter-spacing: -0.03em; font-weight: 800; }
+    .hero p.tag { font-size: 22px; margin: 0 auto 34px; max-width: 560px; opacity: 0.95; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #000; color: #fff;
+      padding: 14px 24px; border-radius: 14px;
+      font-size: 17px; font-weight: 600;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+    .cta:hover { transform: translateY(-1px); opacity: 0.9; }
+    .cta svg { display: block; }
+    .cta small { display: block; font-size: 11px; font-weight: 500; opacity: 0.8; line-height: 1; }
+    .cta .big { font-size: 18px; font-weight: 700; line-height: 1.1; }
+    .hero .soon { display: block; margin-top: 16px; font-size: 14px; opacity: 0.85; }
+
+    /* Sections */
+    section { max-width: 980px; margin: 0 auto; padding: 72px 24px; }
+    h2.section-title { font-size: 34px; text-align: center; letter-spacing: -0.02em; margin: 0 0 8px; font-weight: 800; }
+    p.section-sub { text-align: center; color: var(--muted); font-size: 18px; margin: 0 auto 48px; max-width: 560px; }
+
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 760px) { .features { grid-template-columns: 1fr; } .hero h1 { font-size: 40px; } }
+    .feature {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 18px; padding: 28px 24px; text-align: left;
+    }
+    .feature .ico {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 16px;
+      background: linear-gradient(160deg, var(--green-top), var(--green-deep));
+    }
+    .feature h3 { margin: 0 0 8px; font-size: 20px; letter-spacing: -0.01em; }
+    .feature p { margin: 0; color: var(--muted); font-size: 16px; }
+
+    /* Privacy band */
+    .band { background: var(--card); }
+    .band section { text-align: center; }
+    .band .ico {
+      width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center; font-size: 34px;
+      background: linear-gradient(160deg, var(--green-top), var(--green-deep));
+    }
+    .band p { color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 48px 24px; color: var(--muted); font-size: 14px;
+      border-top: 1px solid var(--line);
+    }
+    footer .links { margin-bottom: 12px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    footer .links a { color: var(--muted); }
+    footer .links a:hover { color: var(--ink); }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>MenuPlan</h1>
-      <p class="tagline">Plan meals by the month. Build grocery lists automatically. Share with family.</p>
-    </header>
+  <header class="nav">
+    <div class="brand"><img src="icon.png" alt="MenuPlan icon"> MenuPlan</div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
 
-    <h2>Support</h2>
-    <div class="card">
-      <p>Need help, found a bug, or have a feature request? I'd love to hear from you.</p>
-      <p><strong>Email:</strong> <a href="mailto:menuplansupport@gmail.com">menuplansupport@gmail.com</a></p>
-      <p>I usually reply within a couple of days.</p>
-    </div>
-
-    <h2>Frequently asked</h2>
-    <div class="card">
-      <p><strong>How does family sharing work?</strong><br>
-      Open <em>Settings → Family Sharing → Share Meal Plans with Family</em> and send the invite.
-      The person you invite taps the link on <em>their own</em> device and accepts — your meal plans and
-      recipes then sync to their phone through iCloud.</p>
-      <p><strong>Do I need an account?</strong><br>
-      No. MenuPlan stores your data in your own iCloud account. There's no separate sign-up.</p>
-      <p><strong>Is my data backed up?</strong><br>
-      Your meal plans sync through iCloud, so they're available across your devices and restored when
-      you set up a new one.</p>
-    </div>
-
-    <h2>Privacy</h2>
-    <div class="card">
-      <p>MenuPlan doesn't collect or sell your personal data. Read the full
-      <a href="privacy.html">Privacy Policy</a>.</p>
-    </div>
-
-    <footer>
-      <p>MenuPlan &middot; Made by Stephen Brines</p>
-    </footer>
+  <div class="hero">
+    <img class="appicon" src="icon.png" alt="MenuPlan app icon">
+    <h1>MenuPlan</h1>
+    <p class="tag">Plan your meals by the month, build grocery lists automatically, and share the whole plan with your family.</p>
+    <!-- TODO: replace href with the real App Store link once the app is live -->
+    <a class="cta" href="#" aria-label="Download on the App Store">
+      <svg viewBox="0 0 384 512" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C73.3 141.2 24 184.8 24 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+      <span><small>Download on the</small><span class="big">App Store</span></span>
+    </a>
+    <span class="soon">Coming soon to iPhone &amp; iPad</span>
   </div>
+
+  <section id="features">
+    <h2 class="section-title">Everything in one place</h2>
+    <p class="section-sub">A calmer way to answer "what's for dinner?" — for the whole month, and the whole household.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="ico">📅</div>
+        <h3>Plan by the month</h3>
+        <p>See your meals laid out across a full month. Tap any empty day to drop in a meal in seconds.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🛒</div>
+        <h3>Automatic grocery lists</h3>
+        <p>Your shopping list builds itself from the meals you've planned — organized by aisle so you shop faster.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">👨‍👩‍👧</div>
+        <h3>Share with family</h3>
+        <p>Invite your partner or family. Everyone sees the same meal plans and recipes, kept in sync automatically.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📖</div>
+        <h3>Your recipes</h3>
+        <p>Save the meals you cook again and again, with ingredients and steps, ready to reuse any week.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🔔</div>
+        <h3>Gentle reminders</h3>
+        <p>Optional nudges so you never forget to prep, shop, or start dinner on time.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">☁️</div>
+        <h3>Synced across devices</h3>
+        <p>Your plans live in your own iCloud, so they're on every device and restored on a new one.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <section>
+      <div class="ico">🔒</div>
+      <h2 class="section-title">Private by design</h2>
+      <p>MenuPlan keeps your data in your own iCloud account. No separate account to create, no third-party tracking, and nothing sold to anyone. Read our <a href="privacy.html">privacy policy</a>.</p>
+    </section>
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:menuplansupport@gmail.com">Contact</a>
+    </div>
+    <div>MenuPlan &middot; Made by Stephen Brines</div>
+  </footer>
 </body>
 </html>
