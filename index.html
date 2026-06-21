@@ -140,17 +140,16 @@
     <img class="appicon" src="icon.png" alt="MenuPlan app icon">
     <h1>MenuPlan</h1>
     <p class="tag">Plan your meals by the month, build grocery lists automatically, and share the whole plan with your family.</p>
-    <!-- ON LAUNCH: delete the span.cta-soon below and uncomment this live link:
-    <a class="cta" href="https://apps.apple.com/app/id6757135232" aria-label="Download MenuPlan on the App Store">
-      <svg viewBox="0 0 384 512" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C73.3 141.2 24 184.8 24 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      <span><small>Download on the</small><span class="big">App Store</span></span>
-    </a>
-    -->
-    <span class="cta cta-soon" role="text" aria-label="Coming soon to the App Store">
-      <svg viewBox="0 0 384 512" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C73.3 141.2 24 184.8 24 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-      <span><small>Coming soon to the</small><span class="big">App Store</span></span>
-    </span>
-    <span class="soon">Available soon on iPhone &amp; iPad</span>
+    <!-- Default = pre-launch "Coming Soon". The script at the bottom of the page
+         checks Apple's iTunes Lookup API and, once the listing is live, swaps this
+         for a working "Download on the App Store" link automatically. -->
+    <div id="cta-slot">
+      <span class="cta cta-soon" role="text" aria-label="Coming soon to the App Store">
+        <svg viewBox="0 0 384 512" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C73.3 141.2 24 184.8 24 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span><small>Coming soon to the</small><span class="big">App Store</span></span>
+      </span>
+    </div>
+    <span class="soon" id="cta-note">Available soon on iPhone &amp; iPad</span>
   </div>
 
   <section id="features">
@@ -207,5 +206,37 @@
     </div>
     <div>MenuPlan &middot; Made by Stephen Brines</div>
   </footer>
+
+  <!-- Auto-detect App Store availability. While MenuPlan isn't live, Apple's
+       lookup returns 0 results and the "Coming Soon" button stays. Once the
+       listing goes live, this swaps in a working Download link with no manual
+       change. Uses JSONP so it works from a static page with no CORS setup. -->
+  <script>
+    (function () {
+      var APP_ID = "6757135232";
+      var APPLE_SVG = '<svg viewBox="0 0 384 512" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C73.3 141.2 24 184.8 24 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>';
+      window.__mpAppLookup = function (data) {
+        try {
+          if (!data || !data.resultCount || data.resultCount < 1) return;
+          var result = data.results[0];
+          var url = result.trackViewUrl || ("https://apps.apple.com/app/id" + APP_ID);
+          var slot = document.getElementById("cta-slot");
+          if (slot) {
+            slot.innerHTML =
+              '<a class="cta" href="' + url + '" aria-label="Download MenuPlan on the App Store">' +
+              APPLE_SVG +
+              '<span><small>Download on the</small><span class="big">App Store</span></span></a>';
+          }
+          var note = document.getElementById("cta-note");
+          if (note) note.textContent = "Available now on iPhone & iPad";
+        } catch (e) { /* leave the Coming Soon state in place */ }
+      };
+      var s = document.createElement("script");
+      s.src = "https://itunes.apple.com/lookup?id=" + APP_ID + "&callback=__mpAppLookup";
+      s.async = true;
+      s.onerror = function () { /* offline or blocked — keep Coming Soon */ };
+      document.head.appendChild(s);
+    })();
+  </script>
 </body>
 </html>
